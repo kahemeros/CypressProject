@@ -9,6 +9,7 @@
   "author": "Erdal Altuncu",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.6.2"
+    "cypress": "^13.6.2",
+    "xpath_cypress": "^1.0.2"
   }
 }
