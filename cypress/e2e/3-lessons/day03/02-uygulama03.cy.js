@@ -18,7 +18,7 @@ describe('Uygulama-03', () => {
             Password = techpro!
         */
         cy.contains('Login or register').click();
-        // text ile locate almak için cy.get() yerine kullanılır.
+        // text ile locate almak için [cy.get() yerine] kullanılır.
         cy.get('[id=loginFrm_loginname]').type('techpro');
         cy.get('[id=loginFrm_password]').type('techpro!');
 
