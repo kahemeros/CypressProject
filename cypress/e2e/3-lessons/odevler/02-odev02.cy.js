@@ -173,7 +173,40 @@ describe("Kitapyurdu Kayıt", () => {
     cy.get("button[role='button']").click();
     cy.contains("Hesabınız Oluşturuldu!").should("have.text", "Hesabınız Oluşturuldu!");
   });
-  it.only("US01TC14 3 karakterli şifre ile kayıt olunamamalı", () => {
+  it("US01TC12 21 karakterli şifre ile kayıt olunamamalı", () => {
+    cy.visit("www.kitapyurdu.com");
+    cy.url().should("include", "kitapyurdu.com");
+    cy.get("a[href='https://www.kitapyurdu.com/index.php?route=account/register']").click();
+    cy.title().should("eq", "Hesap Oluştur");
+    cy.get('input[id="register-name"]').type("Mehmet");
+    cy.get('input[id="register-lastname"]').type("Aydın");
+    cy.get('input[id="register-email"]').type("tyheir.amara30@falkcia.com");
+    cy.get('input[id="register-password"]').type("123456789012345678901");
+    cy.get('input[id="register-password-confirm"]').type("123456789012345678901");
+    cy.get(":nth-child(7) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get(":nth-child(8) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get("#cookiescript_accept").click();
+    cy.get("button[role='button']").click();
+    cy.get("span[class='ky-error-input']").should("contain", "Şifreniz 8 ile 20 karakter arasında olmalı!");
+  });
+
+  it("US01TC13 13 karakterli şifre ile kayıt olunabilmeli", () => {
+    cy.visit("www.kitapyurdu.com");
+    cy.url().should("include", "kitapyurdu.com");
+    cy.get("a[href='https://www.kitapyurdu.com/index.php?route=account/register']").click();
+    cy.title().should("eq", "Hesap Oluştur");
+    cy.get('input[id="register-name"]').type("Mehmet");
+    cy.get('input[id="register-lastname"]').type("Aydın");
+    cy.get('input[id="register-email"]').type("tyheir.amara31@falkcia.com");
+    cy.get('input[id="register-password"]').type("1234567890123");
+    cy.get('input[id="register-password-confirm"]').type("1234567890123");
+    cy.get(":nth-child(7) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get(":nth-child(8) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get("#cookiescript_accept").click();
+    cy.get("button[role='button']").click();
+    cy.contains("Hesabınız Oluşturuldu!").should("have.text", "Hesabınız Oluşturuldu!");
+  });
+  it("US01TC14 3 karakterli şifre ile kayıt olunamamalı", () => {
     cy.visit("www.kitapyurdu.com");
     cy.url().should("include", "kitapyurdu.com");
     cy.get("a[href='https://www.kitapyurdu.com/index.php?route=account/register']").click();
@@ -183,6 +216,22 @@ describe("Kitapyurdu Kayıt", () => {
     cy.get('input[id="register-email"]').type("tyheir.amara27@falkcia.com");
     cy.get('input[id="register-password"]').type("123");
     cy.get('input[id="register-password-confirm"]').type("123");
+    cy.get(":nth-child(7) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get(":nth-child(8) > .ky-form-check-label > .ky-checkbox-input").click();
+    cy.get("#cookiescript_accept").click();
+    cy.get("button[role='button']").click();
+    cy.get("span[class='ky-error-input']").should("contain", "Şifreniz 8 ile 20 karakter arasında olmalı!");
+  });
+  it.only("US01TC15 25 karakterli şifre ile kayıt olunamamalı", () => {
+    cy.visit("www.kitapyurdu.com");
+    cy.url().should("include", "kitapyurdu.com");
+    cy.get("a[href='https://www.kitapyurdu.com/index.php?route=account/register']").click();
+    cy.title().should("eq", "Hesap Oluştur");
+    cy.get('input[id="register-name"]').type("Mehmet");
+    cy.get('input[id="register-lastname"]').type("Aydın");
+    cy.get('input[id="register-email"]').type("tyheir.amara32@falkcia.com");
+    cy.get('input[id="register-password"]').type("1234567890123456789012345");
+    cy.get('input[id="register-password-confirm"]').type("1234567890123456789012345");
     cy.get(":nth-child(7) > .ky-form-check-label > .ky-checkbox-input").click();
     cy.get(":nth-child(8) > .ky-form-check-label > .ky-checkbox-input").click();
     cy.get("#cookiescript_accept").click();
