@@ -9,25 +9,31 @@
 */
 
 describe("Uygulama-05 Ödev", () => {
-  it("AutomationTestStore Kullanıcı Hesap Bilgilerinin Editlenmesi", () => {
+  it("Eylem Komutlarının Kullanımı", () => {
     // https://automationteststore.com adresini ziyaret et
+    const loginName = "techpro";
+    const password = "techpro!";
+    const name = "Cypress";
+    const lastName = "is the best";
+    const email = "cypressisthebest@gmail.com";
+
     cy.visit("https://automationteststore.com");
     // Login ol Login Name: techpro, Password: techpro!
     cy.contains("Login or register").click();
-    cy.get("#loginFrm_loginname").type("techpro");
-    cy.get("#loginFrm_password").type("techpro!");
-    //"Login" butonuna tıkla
-    cy.get("[title='Login']").click();
+    cy.get("#loginFrm").within(() => {
+      cy.get("#loginFrm_loginname").type(loginName);
+      cy.get("#loginFrm_password").type(password);
+      //"Login" butonuna tıkla
+      cy.get("[title='Login']").click();
+    });
     // "Edit account details" butonuna tıkla
     cy.get("[class='nav-dash']").find("[data-original-title='Edit account details']").click();
-    // Formdaki dolu olan alanları temizle
-    cy.get("#AccountFrm_firstname").clear();
-    cy.get("#AccountFrm_firstname").type("Cypress");
-    cy.get("#AccountFrm_lastname").clear();
-    cy.get("#AccountFrm_lastname").type("is the best");
-    cy.get("#AccountFrm_email").clear();
-    cy.get("#AccountFrm_email").type("cypressisthebest@gmail.com");
-    cy.get("button[title='Continue']").click();
-    cy.get("[class='alert alert-success']").should("contain", "Success: Your account has been successfully updated.");
+    // Formdaki dolu olan alanları temizle ve doldur
+    cy.get("#AccountFrm_firstname").clear().type(name);
+    cy.get("#AccountFrm_lastname").clear().type(lastName);
+    cy.get("#AccountFrm_email").clear().type(email);
+    cy.get("[title='Continue']").click();
+    // Account bilgilerinin güncellendiğini doğrula
+    cy.get(".alert-success").should("contain", "Success: Your account has been successfully updated.");
   });
 });
