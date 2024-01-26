@@ -9,6 +9,7 @@
   "author": "Erdal",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "cypress": "^13.6.3",
     "xpath_cypress": "^1.0.2"
   }
