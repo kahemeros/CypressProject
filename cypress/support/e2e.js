@@ -19,5 +19,5 @@ import "./commands";
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 require("xpath_cypress");
-require("cypress-iframe");
 require("@faker-js/faker");
+require("cypress-iframe")
