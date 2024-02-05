@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("magentoLogin", (email, password) => {
+    cy.contains("Sign In").click();
+    cy.get("#email").type(email);
+    cy.get("#pass").type(password);
+    cy.get("#send2").click();
+})
+
+Cypress.Commands.add("magentoSearch", (aranacakKelime) => {
+    cy.get("#search").type(aranacakKelime);
+    cy.get(".actions>button[type='submit']").click();
+    cy.get("[data-ui-id='page-title-wrapper']").should("be.visible").and("contain", aranacakKelime);
+})

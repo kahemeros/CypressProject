@@ -1,4 +1,5 @@
 describe("fixture() - Çoklu Data Kullanımı", () => {
+  // Normalde before() blok birden fazla it() bloku olduğu zaman uygulamak daha mantıklı. datayı çağırma işlemi gibi her it() blokunda tekrarlanan işlemleri bir kere before() blok içinde yaparsak (ve bu datayı describe seviyesinde tanımlarsak) bu datayı tüm it() bloklarında kullanabiliriz.
   let dataSeti;
   before(() => {
     cy.visit("https://www.kitapyurdu.com");
@@ -16,7 +17,7 @@ describe("fixture() - Çoklu Data Kullanımı", () => {
             {"kelime": "javascript"},
             {"kelime": "cypress"}
         ]
-        Aynı key'e sahip 3 farklı value olduğu için forEach() methodunu kullanarak döngü içinde her seferinde farklı value'ları alıp arama kutusuna ekliyoruz böylece. dataSeti olarak describe içinden aldığımız değişkeni forEach() methodu uygulayıp tüm dataları testData isimli değişkene yükledik (JS dersinde bunlara item da diyorduk, ism önemsiz). cygt satırında ise forEach() döngüsü ile oluşturduğumuz yeni variable üzerinden type() methodunu uygulayabildik.
+        Aynı key'e sahip 3 farklı value olduğu için forEach() methodunu kullanarak döngü içinde her seferinde farklı value'ları alıp arama kutusuna ekliyoruz böylece. dataSeti olarak describe içinden aldığımız değişkeni forEach() methodu uygulayıp tüm dataları testData isimli değişkene yükledik (JS dersinde bunlara item da diyorduk, isim önemsiz). cygt satırında ise forEach() döngüsü ile oluşturduğumuz yeni variable üzerinden type() methodunu uygulayabildik.
       */
       cy.get(".button-search").click();
       cy.get(".search-heading-title").should("contain", testData.kelime);
